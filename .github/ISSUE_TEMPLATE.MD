@@ -1,6 +1,8 @@
-**Command Name**:
+**Command Name:**
 
-**Command Output**:
+**Command Aliases:**
+
+**Command Output:**
 
 **Further Details:**
 
