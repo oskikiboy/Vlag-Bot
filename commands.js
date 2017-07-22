@@ -44,7 +44,7 @@ module.exports = {
 		maintainer: false,
 	},
 	help: {
-		aliases: ["helpo", "homo"],
+		aliases: ["helpo", "homo", "h"],
 		maintainer: true,
 	},
 	fuck: {
