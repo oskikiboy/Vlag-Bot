@@ -51,4 +51,8 @@ module.exports = {
 		aliases: ["fack", "fooking"],
 		maintainer: false,
 	},
+	fixit: {
+		aliases: ["fix", "fix-it"],
+		maintainer: false,
+	},
 };

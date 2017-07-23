@@ -13,7 +13,7 @@ exports.run = async (bot, msg, suffix) => {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `*${msg.author.toString()} walks up behind ${mentions.first().toString()}, gently pulls they pants down, reaches around and caresses them lovingly*`
+				description: `*${msg.author.toString()} walks up behind ${mentions.first().toString()}, gently pulls their pants down, reaches around and caresses them lovingly*`
 			}
 		});
 	} else {
