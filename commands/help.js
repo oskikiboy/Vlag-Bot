@@ -8,7 +8,7 @@ exports.run = async (bot, msg, suffix) => {
 	for (const command in commands) {
 		output.push(template(command, commands[command].aliases, commands[command].maintainer));
 	}
-	msg.channel.send({
+	msg.author.send({
 		embed: {
 			color: 0x3669FA,
 			description: output.join("\n"),

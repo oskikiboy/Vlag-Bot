@@ -24,7 +24,7 @@ module.exports = {
 		maintainer: false,
 	},
 	stroke: {
-		aliases: ["strokes", "stroken"],
+		aliases: ["strokes", "stroken", "strake"],
 		maintainer: false,
 	},
 	hail: {
@@ -44,7 +44,7 @@ module.exports = {
 		maintainer: false,
 	},
 	help: {
-		aliases: ["helpo", "homo", "h"],
+		aliases: ["helpo", "homo", "h", "halp"],
 		maintainer: false,
 	},
 	fuck: {
