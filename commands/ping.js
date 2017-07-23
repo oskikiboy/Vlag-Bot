@@ -8,7 +8,7 @@ exports.run = async (bot, msg, suffix) => {
 	return m.edit({
 		embed: {
 			color: 0x3669FA,
-			description: `Pong! Latency: ${bot.ping}ms`,
+			description: `Pong! Latency: ${Math.floor(bot.ping)}ms`,
 			footer: {
 				text: `It took ${m.createdTimestamp - msg.createdTimestamp}ms to ping.`
 			}

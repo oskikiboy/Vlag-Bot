@@ -10,7 +10,7 @@ const bot = new Discord.Client({
 	],
 });
 
-const switchPlayingGame = async (user = bot.user) => {
+const switchPlayingGame = (user = bot.user) => {
 	if (config.playingQuotes.length > 2) {
 		let randomQuote = Math.floor(Math.random() * config.playingQuotes.length);
 		console.log(`Changed my shitty playing quote to "${config.playingQuotes[randomQuote]}"`);
@@ -32,6 +32,11 @@ bot.once("ready", () => {
 
 bot.on("message", async msg => {
 	if (msg.content.startsWith(config.prefix)) {
+		try {
+			await msg.delete();
+		} catch (err) {
+			// Ignore Error
+		}
 		/*
 		 * Any complains about my code will be ignored kek
 		 */
