@@ -11,6 +11,6 @@ module.exports = {
 	],
 	emojis: {
 		facepalm: "<:haden:260203490415083520>",
-		lennythink: "<:LennyThinkemoji:338007874372370432>"
+		lennythink: "<:LennyThinkemoji:338661048288542720>"
 	}
 };
