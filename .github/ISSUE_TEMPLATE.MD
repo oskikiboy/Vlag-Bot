@@ -2,7 +2,7 @@
 
 **Command Aliases:**
 
-**Command Output:**
+**Command Output:** (State if it should be an embed, and if yes, with what color)
 
 **Further Details:**
 
