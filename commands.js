@@ -91,4 +91,8 @@ module.exports = {
 		aliases: ["kidkiller", "killer", "keemstar", "kil"],
 		maintainer: false,
 	},
+	howmany: {
+		aliases: ["howmuch", "what"],
+		maintainer: false,
+	},
 };
