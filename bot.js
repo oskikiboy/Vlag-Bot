@@ -40,11 +40,6 @@ bot.on("message", async msg => {
 		});
 	}
 	if (msg.content.startsWith(config.prefix)) {
-		try {
-			await msg.delete();
-		} catch (err) {
-			// Ignore Error
-		}
 		/*
 		 * Any complains about my code will be ignored kek
 		 */
@@ -52,6 +47,11 @@ bot.on("message", async msg => {
 		let suffix = msg.content.substring(cmd.length + 2).trim();
 		for (const command in commands) {
 			if (cmd === command) {
+				try {
+					await msg.delete();
+				} catch (err) {
+					// Ignore Error
+				}
 				if (commands[command].maintainer) {
 					if (config.maintainers.includes(msg.author.id)) {
 						try {
@@ -74,6 +74,11 @@ bot.on("message", async msg => {
 			}
 			for (const alias of commands[command].aliases) {
 				if (cmd === alias) {
+					try {
+						await msg.delete();
+					} catch (err) {
+						// Ignore Error
+					}
 					if (commands[command].maintainer) {
 						if (config.maintainers.includes(msg.author.id)) {
 							try {
