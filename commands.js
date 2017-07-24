@@ -79,4 +79,8 @@ module.exports = {
 		aliases: ["ewan64", "iewan", "ewan"],
 		maintainer: false,
 	},
+	haden: {
+		aliases: ["handu", "hoodiny"],
+		maintainer: false,
+	},
 };
