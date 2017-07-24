@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 global.config = require("./config.js");
 const commands = require("./commands.js");
-let usage = 0;
-exports.usage = usage;
+
+exports.usage = 0;
 
 const bot = new Discord.Client({
 	fetchAllMembers: true,
@@ -49,7 +49,7 @@ bot.on("message", async msg => {
 		let suffix = msg.content.substring(cmd.length + 2).trim();
 		for (const command in commands) {
 			if (cmd === command) {
-				usage++;
+				exports.usage++;
 				try {
 					await msg.delete();
 				} catch (err) {
@@ -77,7 +77,7 @@ bot.on("message", async msg => {
 			}
 			for (const alias of commands[command].aliases) {
 				if (cmd === alias) {
-					usage++;
+					exports.usage++;
 					try {
 						await msg.delete();
 					} catch (err) {
