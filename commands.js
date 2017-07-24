@@ -83,4 +83,8 @@ module.exports = {
 		aliases: ["handu", "hoodiny"],
 		maintainer: false,
 	},
+	balls: {
+		aliases: ["oops", "ops", "ups", "uups"],
+		maintainer: false,
+	},
 };
