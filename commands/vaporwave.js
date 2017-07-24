@@ -1,5 +1,17 @@
 exports.run = async (bot, msg, suffix) => {
 	if (suffix) {
+		let mentionRegex = /<@!?.*?>/;
+		let split = suffix.split(" ");
+		let toReplace = [];
+		for (const splitted of split) {
+			if (splitted.match(mentionRegex)) {
+				suffix = suffix.replace(splitted, "»");
+				toReplace.push({
+					index: split.indexOf(splitted),
+					replace: splitted,
+				});
+			}
+		}
 		let toSend = suffix.replace(/a/g, "ａ")
 												.replace(/b/g, "ｂ")
 												.replace(/c/g, "ｃ")
@@ -51,11 +63,54 @@ exports.run = async (bot, msg, suffix) => {
 												.replace(/W/g, "Ｗ")
 												.replace(/X/g, "Ｘ")
 												.replace(/Y/g, "Ｙ")
-												.replace(/Z/g, "Ｚ");
+												.replace(/Z/g, "Ｚ")
+												.replace(/1/g, "１")
+												.replace(/!/g, "！")
+												.replace(/2/g, "２")
+												.replace(/@/g, "＠")
+												.replace(/3/g, "３")
+												.replace(/#/g, "＃")
+												.replace(/4/g, "４")
+												.replace(/\$/g, "＄")
+												.replace(/5/g, "５")
+												.replace(/%/g, "％")
+												.replace(/6/g, "６")
+												.replace(/\^/g, "^")
+												.replace(/7/g, "７")
+												.replace(/&/g, "＆")
+												.replace(/8/g, "８")
+												.replace(/\*/g, "＊")
+												.replace(/9/g, "９")
+												.replace(/\(/g, "（")
+												.replace(/0/g, "０")
+												.replace(/\)/g, "）")
+												.replace(/-/g, "－")
+												.replace(/_/g, "_")
+												.replace(/\+/g, "＋")
+												.replace(/=/g, "＝")
+												.replace(/\|/g, "|")
+												.replace(/;/g, "；")
+												.replace(/:/g, "：")
+												.replace(/'/g, "＇")
+												.replace(/</g, "<")
+												.replace(/,/g, "，")
+												.replace(/\./g, "．")
+												.replace(/>/g, ">")
+												.replace(/\//g, "／")
+												.replace(/\?/g, "？");
+		let toSendSplit = toSend.split(" ");
+		for (const finishedSplit of toSendSplit) {
+			for (const object of toReplace) {
+				if (toSendSplit.indexOf(finishedSplit) === object.index) {
+					toSendSplit[object.index] = object.replace;
+				}
+			}
+		}
+		const finishedString = toSendSplit.join(" ");
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: toSend,
+				description: finishedString,
 			},
 		});
 	} else {
