@@ -117,7 +117,7 @@ exports.run = async (bot, msg, suffix) => {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `Ａ　Ｓ　Ｔ　Ｈ　Ｅ　Ｔ　Ｉ　Ｃ　Ｓ`,
+				description: `Ａ　Ｅ　Ｓ　Ｔ　Ｈ　Ｅ　Ｔ　Ｉ　Ｃ　Ｓ`,
 			},
 		});
 	}
