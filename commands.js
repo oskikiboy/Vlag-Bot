@@ -76,7 +76,7 @@ module.exports = {
 		maintainer: false,
 	},
 	iewan64: {
-		aliases: ["ewan64", "iewan"],
+		aliases: ["ewan64", "iewan", "ewan"],
 		maintainer: false,
 	},
 };
