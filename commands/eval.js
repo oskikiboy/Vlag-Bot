@@ -11,23 +11,23 @@ exports.run = async (bot, msg, suffix) => {
 			msg.channel.send({
 				embed: {
 					description: `\`\`\`js\n${result}\`\`\``,
-					color: 0x3669FA
-				}
+					color: 0x3669FA,
+				},
 			});
 		} catch (err) {
 			msg.channel.send({
 				embed: {
 					description: `\`\`\`js\n${err}\`\`\``,
-					color: 0xFF0000
-				}
+					color: 0xFF0000,
+				},
 			});
 		}
 	} else {
 		msg.channel.send({
 			embed: {
 				description: `You want me to evaluate what? A dick up my ass? Smh.. ${config.emojis.facepalm}`,
-				color: 0xFF0000
-			}
+				color: 0xFF0000,
+			},
 		});
 	}
 };

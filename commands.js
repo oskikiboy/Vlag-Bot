@@ -55,4 +55,16 @@ module.exports = {
 		aliases: ["fix", "fix-it"],
 		maintainer: false,
 	},
+	tom: {
+		aliases: ["dnomaid", "fish"],
+		maintainer: false,
+	},
+	josh: {
+		aliases: ["st1ing", "sting"],
+		maintainer: false,
+	},
+	bantergaming: {
+		aliases: ["banter", "eggs", "egg"],
+		maintainer: false,
+	},
 };

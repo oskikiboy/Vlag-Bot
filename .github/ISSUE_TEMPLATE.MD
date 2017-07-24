@@ -2,7 +2,7 @@
 
 **Command Aliases:**
 
-**Command Output:** (State if it should be an embed, and if yes, with what color)
+**Command Output:** (State if it should be an embed, and if yes, with what color in the format of `0xFFFFFF`)
 
 **Further Details:**
 

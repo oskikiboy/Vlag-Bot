@@ -7,6 +7,9 @@ module.exports = {
 		es6: true,
 		node: true,
 	},
+	globals: {
+		config: true
+	},
 	rules: {
 		"no-await-in-loop": "warn",
 		"no-compare-neg-zero": "error",
