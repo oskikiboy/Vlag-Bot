@@ -31,6 +31,14 @@ bot.once("ready", () => {
 });
 
 bot.on("message", async msg => {
+	if (msg.content.toLowerCase().trim() === "me me big boy") {
+		return msg.channel.send({
+			embed: {
+				color: 0x3669FA,
+				description: `me me big BOT ${msg.author}`,
+			},
+		});
+	}
 	if (msg.content.startsWith(config.prefix)) {
 		try {
 			await msg.delete();
