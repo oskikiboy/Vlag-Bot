@@ -71,4 +71,12 @@ module.exports = {
 		aliases: ["vapor", "wave"],
 		maintainer: false,
 	},
+	da532: {
+		aliases: ["devon", "da", "damedia"],
+		maintainer: false,
+	},
+	iewan64: {
+		aliases: ["ewan64", "iewan"],
+		maintainer: false,
+	},
 };
