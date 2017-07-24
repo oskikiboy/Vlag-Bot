@@ -87,4 +87,12 @@ module.exports = {
 		aliases: ["oops", "ops", "ups", "uups"],
 		maintainer: false,
 	},
+	foot: {
+		aliases: ["feet", "fuut"],
+		maintainer: false,
+	},
+	kill: {
+		aliases: ["kidkiller", "killer", "keemstar", "kil"],
+		maintainer: false,
+	},
 };
