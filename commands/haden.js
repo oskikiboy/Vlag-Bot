@@ -6,7 +6,7 @@ exports.run = async (bot, msg, suffix) => {
 	msg.channel.send({
 		embed: {
 			color: 0x3669FA,
-			description: `<@144260472575754241> nice underware.`,
+			description: `<@144260472575754241> nice underwear.`,
 			image: {
 				url: array[Math.floor(Math.random() * array.length)],
 			},
