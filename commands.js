@@ -67,4 +67,8 @@ module.exports = {
 		aliases: ["banter", "eggs", "egg"],
 		maintainer: false,
 	},
+	vaporwave: {
+		aliases: ["vapor", "wave"],
+		maintainer: false,
+	},
 };
