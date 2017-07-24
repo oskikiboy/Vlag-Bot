@@ -1,4 +1,4 @@
-## Vlag Approved AuroraBot
+## Vlag-Approved AuroraBot
 
 Cause why not?
 
