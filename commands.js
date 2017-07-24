@@ -48,7 +48,7 @@ module.exports = {
 		maintainer: false,
 	},
 	fuck: {
-		aliases: ["fack", "fooking"],
+		aliases: ["fack", "fooking", "fuckme"],
 		maintainer: false,
 	},
 	fixit: {
