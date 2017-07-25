@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 global.config = require("./config.js");
 const commands = require("./commands.js");
 
-exports.usage = 0;
+exports.usage = {};
 
 const bot = new Discord.Client({
 	fetchAllMembers: true,
@@ -30,6 +30,10 @@ bot.login(config.token).then(token => {
 bot.once("ready", () => {
 	console.log(`I'm in ${bot.guilds.size} guilds with ${bot.users.size} total users. Smh..`);
 	switchPlayingGame(bot.user);
+	for (const command in commands) {
+		exports.usage[command] = 0;
+	}
+	exports.usage.total = 0;
 });
 
 bot.on("message", async msg => {
@@ -49,7 +53,8 @@ bot.on("message", async msg => {
 		let suffix = msg.content.substring(cmd.length + 2).trim();
 		for (const command in commands) {
 			if (cmd === command) {
-				exports.usage++;
+				exports.usage[command]++;
+				exports.usage.total++;
 				try {
 					await msg.delete();
 				} catch (err) {
@@ -77,7 +82,8 @@ bot.on("message", async msg => {
 			}
 			for (const alias of commands[command].aliases) {
 				if (cmd === alias) {
-					exports.usage++;
+					exports.usage[command]++;
+					exports.usage.total++;
 					try {
 						await msg.delete();
 					} catch (err) {

@@ -1,4 +1,12 @@
 exports.run = async (bot, msg, suffix) => {
+	const pretty = object => {
+		let array = [];
+		const template = (cmd, usage) => `**»** ${cmd}: ran ${usage} time${usage === 1 ? "" : "s"}`;
+		for (const res in object) {
+			array.push(template(res, object[res]));
+		}
+		return array;
+	};
 	if (suffix.trim().toLowerCase() === "commands" || suffix.trim().toLowerCase() === "cmds") {
 		return msg.channel.send({
 			embed: {
@@ -7,10 +15,11 @@ exports.run = async (bot, msg, suffix) => {
 			},
 		});
 	} else if (suffix.trim().toLowerCase() === "usage") {
+		const array = pretty(require("../bot.js").usage);
 		return msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `**${require("../bot.js").usage}** commands were run so far from the last reboot.`,
+				description: `**${require("../bot.js").usage.total}** total commands were run so far from the last reboot.\n${array.join("\n")}`,
 			},
 		});
 	}
