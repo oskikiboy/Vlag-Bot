@@ -7,5 +7,8 @@ exports.run = async (bot, msg, suffix) => {
 			},
 			description: `<@212748677041618944> likes giving that tongue. 👅`
 		},
+		footer: {
+			text: `A quote from Sorarin herself: "I eat pussy xd"`,
+		},
 	});
 };
