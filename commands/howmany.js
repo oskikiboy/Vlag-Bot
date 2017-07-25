@@ -3,6 +3,7 @@ exports.run = async (bot, msg, suffix) => {
 		let array = [];
 		const template = (cmd, usage) => `**»** ${cmd}: ran ${usage} time${usage === 1 ? "" : "s"}`;
 		for (const res in object) {
+			if (res === "total") continue;
 			array.push(template(res, object[res]));
 		}
 		return array;
