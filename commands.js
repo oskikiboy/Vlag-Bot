@@ -95,4 +95,8 @@ module.exports = {
 		aliases: ["howmuch", "what"],
 		maintainer: false,
 	},
+	sorarin: {
+		aliases: ["badpainter", "fingering"],
+		maintainer: false,
+	},
 };
