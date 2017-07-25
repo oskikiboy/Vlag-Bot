@@ -96,7 +96,7 @@ module.exports = {
 		maintainer: false,
 	},
 	sorarin: {
-		aliases: ["badpainter", "fingering"],
+		aliases: ["badpainter", "fingering", "soraron", "ron"],
 		maintainer: false,
 	},
 };
