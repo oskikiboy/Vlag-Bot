@@ -124,4 +124,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	embed: {
+		aliases: ["em", "embedded", "embedpls"],
+		maintainer: false,
+		usage: `<image link>`,
+	},
 };
