@@ -3,7 +3,7 @@ const commands = require(`../commands.js`);
 exports.run = async (bot, msg, suffix) => {
 	if (suffix) {
 		const template = (cmd, aliases, usage, maintainer) => {
-			let string = `**»** Help for command **${cmd}**\nUsage: ${usage !== "" ? usage : "No usage"}\nAliases: \`${aliases.join(", ")}\`\nMaintainer Only: ${maintainer}`;
+			let string = `**»** Help for command **${cmd}**\nUsage: \`${usage !== "" ? usage : "No usage"}\`\nAliases: \`${aliases.join(", ")}\`\nMaintainer Only: ${maintainer}`;
 			return string;
 		};
 		for (const command in commands) {
@@ -29,7 +29,7 @@ exports.run = async (bot, msg, suffix) => {
 	} else {
 		const output = [];
 		const template = (cmd, aliases, usage, maintainer) => {
-			const string = `**»** ${cmd}\nAliases: \`${aliases.join(", ")}\`\nUsage: ${usage !== "" ? usage : "No usage"}\nMaintainer Only: ${maintainer}`;
+			const string = `**»** ${cmd}\nAliases: \`${aliases.join(", ")}\`\nUsage: \`${usage !== "" ? usage : "No usage"}\`\nMaintainer Only: ${maintainer}`;
 			return string;
 		};
 		for (const command in commands) {
