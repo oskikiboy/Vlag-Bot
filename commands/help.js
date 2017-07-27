@@ -36,7 +36,7 @@ exports.run = async (bot, msg, suffix) => {
 			output.push(template(command, commands[command].aliases, commands[command].usage, commands[command].maintainer));
 		}
 		if (output.join("\n").length > 1980) {
-			const split = output.chunk(8);
+			const split = output.chunk(10);
 			for (const splitted of split) {
 				msg.author.send({
 					embed: {
