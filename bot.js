@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 global.config = require("./config.js");
 const commands = require("./commands.js");
-require("./ThatBullshit.js");
+require("./ThatBullshit.js")();
 
 exports.usage = {};
 
