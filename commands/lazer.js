@@ -4,7 +4,9 @@ exports.run = async (bot, msg, suffix) => {
 		embed: {
 			color: 0x002e59,
 			description: `V-BOT IS MY COPYRIGHT!!!`,
-      image: https://lazer.cf/assets/lazerbot/icon.png`,
+      			image: {
+				url: `https://lazer.cf/assets/lazerbot/icon.png`,
+			},
 		},
 	});
 };
