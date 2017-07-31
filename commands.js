@@ -104,11 +104,6 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
-	balls: {
-		aliases: ["oops", "ops", "ups", "uups"],
-		maintainer: false,
-		usage: ``,
-	},
 	kill: {
 		aliases: ["kidkiller", "killer", "keemstar", "kil"],
 		maintainer: false,
