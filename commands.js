@@ -124,4 +124,9 @@ module.exports = {
 		maintainer: false,
 		usage: `<image link>`,
 	},
+	lazer: {
+		aliases: ["lazor"],
+		maintainer: false,
+		usage: ``,
+	},
 };
