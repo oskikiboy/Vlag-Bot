@@ -20,9 +20,9 @@ const switchPlayingGame = (user = bot.user) => {
 		user.setGame(config.playingQuotes[randomQuote]);
 		setTimeout(switchPlayingGame, 450000);
 	}
-}
+};
 
-bot.login(config.token).then(token => {
+bot.login(config.token).then(() => {
 	console.log("I'm online");
 }).catch(err => {
 	console.error(`You incapable fucktard. Theres been an error dammit!\n`, err);
@@ -57,7 +57,7 @@ bot.on("message", async msg => {
 				exports.usage[command]++;
 				exports.usage.total++;
 				try {
-					await msg.delete();
+					// Await msg.delete();
 				} catch (err) {
 					// Ignore Error
 				}
@@ -86,7 +86,7 @@ bot.on("message", async msg => {
 					exports.usage[command]++;
 					exports.usage.total++;
 					try {
-						await msg.delete();
+						// Await msg.delete();
 					} catch (err) {
 						// Ignore Error
 					}

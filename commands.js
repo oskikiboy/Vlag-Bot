@@ -129,4 +129,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	gabvsauttaja: {
+		aliases: ["auttajaisbetter", "gabsucks", "switch_to_auttaja", "switch_to_gawesomebot"],
+		maintainer: false,
+		usage: ``,
+	},
 };
