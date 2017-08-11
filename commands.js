@@ -134,4 +134,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	quake: {
+		aliases: ["annsquake", "arseshake", "isis_propaganda"],
+		maintainer: false,
+		usage: ``,
+	},
 };
