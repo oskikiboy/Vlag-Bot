@@ -139,4 +139,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	jaffa: {
+		aliases: ["jaffa"],
+		maintainer: false,
+		usage: ``,
+	},
 };
