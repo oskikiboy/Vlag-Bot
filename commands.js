@@ -140,7 +140,7 @@ module.exports = {
 		usage: ``,
 	},
 	jaffa: {
-		aliases: ["jaffa"],
+		aliases: ["jaffameme"],
 		maintainer: false,
 		usage: ``,
 	},
