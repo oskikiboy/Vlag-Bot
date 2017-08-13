@@ -1,4 +1,3 @@
-
 exports.run = async (bot, msg, suffix) => {
 	msg.channel.send({
 		embed: {
