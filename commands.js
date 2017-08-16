@@ -149,4 +149,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+    	hack: {
+		aliases: ["h4x0r", "1337"],
+		maintainer: false,
+		usage: ``,
+	},
 };
