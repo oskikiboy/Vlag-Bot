@@ -135,7 +135,7 @@ module.exports = {
 		usage: ``,
 	},
 	quake: {
-		aliases: ["annsquake", "arseshake", "quake_propoganda"],
+		aliases: ["annsquake", "arseshake", "quake_propaganda"],
 		maintainer: false,
 		usage: ``,
 	},
