@@ -55,12 +55,13 @@ bot.on("message", async msg => {
 		 */
 		let cmd = msg.content.substring(config.prefix.length).split(" ")[0].trim().toLowerCase();
 		let suffix = msg.content.substring(cmd.length + 2).trim();
-		if (msg.author.id === "" && cmd === "reload") {
+		if (config.maintainers.includes(msg.author.id) && cmd === "reload") {
 			global.commands = reload("./commands");
+			global.config = reload("./config.js");
 			msg.channel.send({
 				embed: {
 					color: 0x3669FA,
-					description: `Reloaded \`commands.js\``,
+					description: `Reloaded \`commands.js\` and \`config.js\``,
 				},
 			});
 			return;
