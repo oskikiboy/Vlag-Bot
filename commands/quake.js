@@ -5,6 +5,7 @@ exports.run = async (bot, msg, suffix) => {
 			image: {
 				url: "https://aurorame.me/i/olthd.png",
 			},
+			description: `The **Quake-Propaganda** is real with this one.`,
 		},
 	});
 };

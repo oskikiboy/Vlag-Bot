@@ -20,8 +20,8 @@ exports.run = async (bot, msg, suffix) => {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `I thought I should let you know that ${msg.author.toString()} **is Gay and European**.`
-			}
+				description: `I thought I should let you know that ${msg.author.toString()} **is Gay and European**.`,
+			},
 		});
 	}
 };

@@ -20,8 +20,8 @@ exports.run = async (bot, msg, suffix) => {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `Your mightly leader, <@139836912335716352>, blesses you!`
-			}
+				description: `Your mightly leader, <@139836912335716352>, blesses you!`,
+			},
 		});
 	}
 };

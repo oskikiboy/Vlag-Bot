@@ -6,15 +6,15 @@ exports.run = async (bot, msg, suffix) => {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `Holy mother of porn!\n*${msg.author.toString()} walks up behind ${string}, gently pulls their pants down, reaches around and caresses them lovingly..*\nIt's a motherfucking gangbang I'll tell you that much!`
-			}
+				description: `Holy mother of porn!\n*${msg.author.toString()} walks up behind ${string}, gently pulls their pants down, reaches around and caresses them lovingly..*\nIt's a motherfucking gangbang I'll tell you that much!`,
+			},
 		});
 	} else if (mentions.first()) {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
-				description: `*${msg.author.toString()} walks up behind ${mentions.first().toString()}, gently pulls their pants down, reaches around and caresses them lovingly*`
-			}
+				description: `*${msg.author.toString()} walks up behind ${mentions.first().toString()}, gently pulls their pants down, reaches around and caresses them lovingly*`,
+			},
 		});
 	} else {
 		msg.channel.send({

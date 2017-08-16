@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
 global.config = require("./config.js");
-const commands = require("./commands.js");
+global.commands = require("./commands.js");
 require("./ThatBullshit.js")();
+
+// TODO: require-reload support
+const reload = require("require-reload")(require);
 
 exports.usage = {};
 
@@ -52,6 +55,16 @@ bot.on("message", async msg => {
 		 */
 		let cmd = msg.content.substring(config.prefix.length).split(" ")[0].trim().toLowerCase();
 		let suffix = msg.content.substring(cmd.length + 2).trim();
+		if (msg.author.id === "" && cmd === "reload") {
+			global.commands = reload("./commands");
+			msg.channel.send({
+				embed: {
+					color: 0x3669FA,
+					description: `Reloaded \`commands.js\``,
+				},
+			});
+			return;
+		}
 		for (const command in commands) {
 			if (cmd === command) {
 				exports.usage[command]++;
@@ -65,7 +78,7 @@ bot.on("message", async msg => {
 					if (config.maintainers.includes(msg.author.id)) {
 						try {
 							console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-							return await require(`./commands/${command}.js`).run(bot, msg, suffix);
+							return await reload(`./commands/${command}.js`).run(bot, msg, suffix);
 						} catch (err) {
 							console.error(err);
 						}
@@ -75,7 +88,7 @@ bot.on("message", async msg => {
 				} else {
 					try {
 						console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-						return await require(`./commands/${command}.js`).run(bot, msg, suffix);
+						return await reload(`./commands/${command}.js`).run(bot, msg, suffix);
 					} catch (err) {
 						console.error(err);
 					}
@@ -94,7 +107,7 @@ bot.on("message", async msg => {
 						if (config.maintainers.includes(msg.author.id)) {
 							try {
 								console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-								await require(`./commands/${command}.js`).run(bot, msg, suffix);
+								await reload(`./commands/${command}.js`).run(bot, msg, suffix);
 							} catch (err) {
 								console.error(err);
 							}
@@ -104,7 +117,7 @@ bot.on("message", async msg => {
 					} else {
 						try {
 							console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-							await require(`./commands/${command}.js`).run(bot, msg, suffix);
+							await reload(`./commands/${command}.js`).run(bot, msg, suffix);
 						} catch (err) {
 							console.error(err);
 						}

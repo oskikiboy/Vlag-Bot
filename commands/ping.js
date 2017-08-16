@@ -10,8 +10,8 @@ exports.run = async (bot, msg, suffix) => {
 			color: 0x3669FA,
 			description: `Pong! Latency: ${Math.floor(bot.ping)}ms`,
 			footer: {
-				text: `It took ${m.createdTimestamp - msg.createdTimestamp}ms to ping.`
-			}
-		}
-	})
+				text: `It took ${m.createdTimestamp - msg.createdTimestamp}ms to ping.`,
+			},
+		},
+	});
 };

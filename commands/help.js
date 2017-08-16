@@ -1,5 +1,3 @@
-/* eslint-disable max-len*/
-const commands = require(`../commands.js`);
 exports.run = async (bot, msg, suffix) => {
 	if (suffix) {
 		const template = (cmd, aliases, usage, maintainer) => {

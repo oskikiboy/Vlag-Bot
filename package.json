@@ -18,6 +18,7 @@
   "homepage": "https://github.com/KingDGrizzle/Vlag-Approved-AuroraBot#readme",
   "dependencies": {
     "discord.js": "github:hydrabolt/discord.js#11.1-dev",
-    "erlpack": "github:hammerandchisel/erlpack"
+    "erlpack": "github:hammerandchisel/erlpack",
+		"require-reload": "*"
   }
 }

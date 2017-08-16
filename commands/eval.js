@@ -4,7 +4,7 @@ exports.run = async (bot, msg, suffix) => {
 			if (suffix.startsWith("```js") && suffix.endsWith("```")) {
 				suffix = suffix.substring(5, suffix.length - 3);
 			}
-			const asyncCode = code => `(async () => { return ${code}})()`;
+			const asyncCode = code => `(async () => {\nreturn ${code}\n})()`;
 			let result = await eval(asyncCode(suffix));
 			if (typeof result !== "string") result = require("util").inspect(result, false, 2);
 			result = result.replace(new RegExp(`${bot.token}|${config.token}`, "g"), "Vlag Dissaproves");
