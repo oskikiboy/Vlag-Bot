@@ -139,4 +139,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	minecraft: {
+		aliases: ["mc", "mine", "craft"],
+		maintainer: false,
+		usage: ``,
+	},
 };
