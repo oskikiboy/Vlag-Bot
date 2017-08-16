@@ -11,7 +11,6 @@ module.exports = {
 		config: true
 	},
 	rules: {
-		"no-await-in-loop": "warn",
 		"no-compare-neg-zero": "error",
 		"no-extra-parens": ["warn", "all", { "nestedBinaryExpressions": false }],
 		"no-template-curly-in-string": "error",
@@ -37,7 +36,6 @@ module.exports = {
 		"no-sequences": "error",
 		"no-throw-literal": "error",
 		"no-unmodified-loop-condition": "error",
-		"no-unused-expressions": "error",
 		"no-useless-call": "error",
 		"no-useless-concat": "error",
 		"no-useless-escape": "error",
@@ -45,7 +43,6 @@ module.exports = {
 		"no-void": "error",
 		"no-warning-comments": "warn",
 		"prefer-promise-reject-errors": "error",
-		"require-await": "warn",
 		"wrap-iife": "error",
 		"yoda": "error",
 		"no-label-var": "error",
@@ -73,7 +70,6 @@ module.exports = {
 		"key-spacing": "error",
 		"keyword-spacing": "error",
 		"max-depth": ["error", 8],
-		"max-len": ["error", 150, 2],
 		"max-nested-callbacks": ["error", { "max": 4 }],
 		"max-statements-per-line": ["error", { "max": 2 }],
 		"new-cap": "off",
@@ -120,5 +116,6 @@ module.exports = {
 		"template-curly-spacing": "error",
 		"no-console": "off",
 		"no-irregular-whitespace": ["error", { "skipStrings": true, "skipComments": true, "skipTemplates": true }],
+		"no-unused-vars": "off",
 	},
 };
