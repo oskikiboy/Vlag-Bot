@@ -3,7 +3,6 @@ global.config = require("./config.js");
 global.commands = require("./commands.js");
 require("./ThatBullshit.js")();
 
-// TODO: require-reload support
 const reload = require("require-reload")(require);
 
 exports.usage = {};
