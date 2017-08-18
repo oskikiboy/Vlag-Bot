@@ -25,6 +25,11 @@ exports.run = async (bot, msg, suffix) => {
 			}
 		}
 	} else {
+		try {
+			await msg.react(`✅`);
+		} catch (err) {
+			// Whatever
+		}
 		const output = [];
 		const template = (cmd, aliases, usage, maintainer) => {
 			const string = `**»** ${cmd}\nAliases: \`${aliases.join(", ")}\`\nUsage: \`${usage !== "" ? usage : "No usage"}\`\nMaintainer Only: ${maintainer}`;
