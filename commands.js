@@ -44,8 +44,8 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
-	dan: {
-		aliases: ["gordon", "ramsey", "ramsay"],
+	gordon: {
+		aliases: ["ramsey", "ramsay"],
 		maintainer: false,
 		usage: ``,
 	},
@@ -89,7 +89,7 @@ module.exports = {
 		maintainer: false,
 		usage: `[TEXT]`,
 	},
-	da532: {
+	/*da532: {
 		aliases: ["devon", "da", "damedia"],
 		maintainer: false,
 		usage: ``,
@@ -98,7 +98,7 @@ module.exports = {
 		aliases: ["ewan64", "iewan", "ewan"],
 		maintainer: false,
 		usage: ``,
-	},
+	},*/
 	haden: {
 		aliases: ["handu", "hoodiny"],
 		maintainer: false,
