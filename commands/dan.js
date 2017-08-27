@@ -7,7 +7,7 @@ exports.run = async (bot, msg, suffix) => {
 	msg.channel.send({
 		embed: {
 			color: 0x3669FA,
-			description: `<@208174800793763840> is after you.. ${config.emojis.lennythink}`,
+			description: `<@337047498218799105> is after you.. ${config.emojis.lennythink}`,
 			image: {
 				url: images[Math.floor(Math.random() * images.length)],
 			},
