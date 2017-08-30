@@ -154,4 +154,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	react: {
+		aliases: ["vote"],
+		maintainer: false,
+		usage: `<message ID>`,
+	},
 };
