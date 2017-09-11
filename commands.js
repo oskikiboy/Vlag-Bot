@@ -159,4 +159,9 @@ module.exports = {
 		maintainer: false,
 		usage: `<message ID>`,
 	},
+	gellatio: {
+		aliases: ["gelato", "italianicecream"],
+		maintainer: false,
+		usage: ``,
+
 };
