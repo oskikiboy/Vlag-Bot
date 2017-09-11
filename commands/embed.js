@@ -1,5 +1,5 @@
 exports.run = async (bot, msg, suffix) => {
-	if (suffix && suffix.match(/^https?:\/\//g) {
+	if (suffix && suffix.match(/^https?:\/\//g)) {
 		msg.channel.send({
 			embed: {
 				color: 0x3669FA,
