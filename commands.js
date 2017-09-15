@@ -89,16 +89,6 @@ module.exports = {
 		maintainer: false,
 		usage: `[TEXT]`,
 	},
-	/*da532: {
-		aliases: ["devon", "da", "damedia"],
-		maintainer: false,
-		usage: ``,
-	},
-	iewan64: {
-		aliases: ["ewan64", "iewan", "ewan"],
-		maintainer: false,
-		usage: ``,
-	},*/
 	haden: {
 		aliases: ["handu", "hoodiny"],
 		maintainer: false,
@@ -158,5 +148,10 @@ module.exports = {
 		aliases: ["vote"],
 		maintainer: false,
 		usage: `<message ID>`,
+	},
+	gellatio: {
+		aliases: ["gelato", "italianicecream"],
+		maintainer: false,
+		usage: ``,
 	},
 };
