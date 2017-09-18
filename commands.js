@@ -154,4 +154,9 @@ module.exports = {
 		maintainer: false,
 		usage: ``,
 	},
+	negative: {
+		aliases: ["negative", "negativecommencer", "positive", "positiveterminator"],
+		maintainer: false,
+		usage: ``,
+	},
 };
