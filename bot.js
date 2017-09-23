@@ -1,45 +1,38 @@
-const Discord = require("discord.js");
-global.config = require("./config.js");
-global.commands = require("./commands.js");
-require("./ThatBullshit.js")();
+const VBotClient = require("./Client.js");
 
-const reload = require("require-reload")(require);
-
-exports.usage = {};
-
-const bot = new Discord.Client({
+const bot = new VBotClient({
 	fetchAllMembers: true,
 	disabledEvents: [
-		"MESSAGE_DELETE_BULK",
 		"TYPING_START",
 	],
 });
 
-const switchPlayingGame = (user = bot.user) => {
-	if (config.playingQuotes.length > 2) {
-		let randomQuote = Math.floor(Math.random() * config.playingQuotes.length);
-		console.log(`Changed my shitty playing quote to "${config.playingQuotes[randomQuote]}"`);
-		user.setGame(config.playingQuotes[randomQuote]);
-		setTimeout(switchPlayingGame, 450000);
-	}
-};
+Object.defineProperty(Array.prototype, "chunk", {
+	value: function value(n) {
+		return Array.from(Array(Math.ceil(this.length / n)), (_, i) => this.slice(i * n, (i * n) + n));
+	},
+});
 
-bot.login(config.token).then(() => {
-	console.log("I'm online");
-}).catch(err => {
-	console.error(`You incapable fucktard. Theres been an error dammit!\n`, err);
+/**
+ * Escapes all possible RegExp variables from the string
+ * @returns {String} The escaped String
+ */
+Object.assign(String.prototype, {
+	escapeRegex() {
+		const matchOperators = /[|\\{}()[\]^$+*?.]/g;
+		return this.replace(matchOperators, "\\$&");
+	},
 });
 
 bot.once("ready", () => {
-	console.log(`I'm in ${bot.guilds.size} guilds with ${bot.users.size} total users. Smh..`);
-	switchPlayingGame(bot.user);
-	for (const command in commands) {
-		exports.usage[command] = 0;
-	}
-	exports.usage.total = 0;
+	bot.logEvent({ event: "READY", shortMessage: `Logged in as ${bot.user.tag}!` });
+	bot.isReady = true;
+	bot.reloadAllCommands();
+	bot.startPlayingStatus();
 });
 
 bot.on("message", async msg => {
+	if (msg.author.bot) return;
 	if (msg.content.toLowerCase().trim() === "me me big boy") {
 		return msg.channel.send({
 			embed: {
@@ -48,82 +41,32 @@ bot.on("message", async msg => {
 			},
 		});
 	}
-	if (msg.content.startsWith(config.prefix)) {
-		/*
-		 * Any complains about my code will be ignored kek
-		 */
-		let cmd = msg.content.substring(config.prefix.length).split(" ")[0].trim().toLowerCase();
-		let suffix = msg.content.substring(cmd.length + 2).trim();
-		if (config.maintainers.includes(msg.author.id) && cmd === "reload") {
-			global.commands = reload("./commands");
-			global.config = reload("./config.js");
-			msg.channel.send({
-				embed: {
-					color: 0x3669FA,
-					description: `Reloaded \`commands.js\` and \`config.js\``,
-				},
-			});
-			return;
-		}
-		for (const command in commands) {
-			if (cmd === command) {
-				exports.usage[command]++;
-				exports.usage.total++;
-				try {
-					// Await msg.delete();
-				} catch (err) {
-					// Ignore Error
-				}
-				if (commands[command].maintainer) {
-					if (config.maintainers.includes(msg.author.id)) {
-						try {
-							console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-							return await reload(`./commands/${command}.js`).run(bot, msg, suffix);
-						} catch (err) {
-							console.error(err);
-						}
-					} else {
-						console.error(`Blocked ${msg.author.tag} from running ${command} as he / she isn't a maintainer.`);
-					}
-				} else {
-					try {
-						console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-						return await reload(`./commands/${command}.js`).run(bot, msg, suffix);
-					} catch (err) {
-						console.error(err);
-					}
-				}
-			}
-			for (const alias of commands[command].aliases) {
-				if (cmd === alias) {
-					exports.usage[command]++;
-					exports.usage.total++;
-					try {
-						// Await msg.delete();
-					} catch (err) {
-						// Ignore Error
-					}
-					if (commands[command].maintainer) {
-						if (config.maintainers.includes(msg.author.id)) {
-							try {
-								console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-								await reload(`./commands/${command}.js`).run(bot, msg, suffix);
-							} catch (err) {
-								console.error(err);
-							}
-						} else {
-							console.error(`Blocked ${msg.author.tag} from running ${command} as he / she isn't a maintainer.`);
-						}
-					} else {
-						try {
-							console.log(`${msg.author.tag} ran ${command} in ${msg.guild.name}`);
-							await reload(`./commands/${command}.js`).run(bot, msg, suffix);
-						} catch (err) {
-							console.error(err);
-						}
-					}
-				}
+	if (msg.guild) {
+		await msg.guild.members.fetch();
+		if (config.deleteMessage) {
+			try {
+				await msg.delete();
+			} catch (err) {
+				bot.logEvent({ event: "DEL_CMD_MSG", shortMessage: `Couldn't delete the command message!`, args: [err.message] });
 			}
 		}
 	}
+	const msgObject = await bot.checkCommandTag(msg.content);
+	const { command, suffix } = msgObject;
+	if (msgObject && command !== null) {
+		let cmd = bot.getCommand(command);
+		let cmdinfo = bot.getCommandInfo(command);
+		if (cmdinfo.maintainer && !bot.isMaintainer(msg.author)) {
+			bot.logCommand({ command, ran: false, reason: `the user isn't a maintainer!`, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			return (new cmd(bot, cmdinfo)).notMaintainer({ msg, suffix });
+		} else if (cmdinfo.maintainer && bot.isMaintainer(msg.author)) {
+			bot.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			return (new cmd(bot, cmdinfo))._run({ msg: msg, suffix: suffix });
+		} else {
+			bot.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			return (new cmd(bot, cmdinfo))._run({ msg: msg, suffix: suffix });
+		}
+	}
 });
+
+bot.login(config.token);
