@@ -1,6 +1,6 @@
 const Command = require("./Command.js");
 
-module.exports = class _ExampleCommand extends Command {
+module.exports = class Vaporwave extends Command {
 	requirements({ msg, suffix }) {
 		if (suffix) return true;
 		return false;
