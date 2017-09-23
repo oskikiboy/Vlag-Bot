@@ -31,4 +31,16 @@ module.exports = {
 		usage: `"all" or <...command>`,
 		description: `Reloads a command or all the configs and the commands`,
 	},
+	vlag: {
+		maintainer: false,
+		aliases: ["vlad"],
+		usage: ``,
+		description: `All hail Vlag!`,
+	},
+	vaporwave: {
+		aliases: ["vapor", "wave"],
+		maintainer: false,
+		usage: `[text]`,
+		description: `Make some sick ass Ａ　Ｅ　Ｓ　Ｔ　Ｈ　Ｅ　Ｔ　Ｉ　Ｃ　Ｓ text.`,
+	},
 };
