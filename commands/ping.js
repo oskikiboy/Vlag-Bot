@@ -1,5 +1,5 @@
 const Command = require("./Command.js");
-
+ 
 module.exports = class Ping extends Command {
 	async run({ msg, suffix }) {
 		let now = Date.now();

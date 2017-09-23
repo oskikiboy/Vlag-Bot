@@ -1,5 +1,5 @@
 const Command = require("./Command.js");
-
+ 
 module.exports = class Eval extends Command {
 	requirements({ msg, suffix }) {
 		if (!suffix) return false;

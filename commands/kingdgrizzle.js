@@ -1,5 +1,5 @@
 const Command = require("./Command.js");
-
+ 
 module.exports = class KingDGrizzle extends Command {
 	async run({ msg, suffix }) {
 		msg.channel.send({
