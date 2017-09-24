@@ -70,7 +70,7 @@ module.exports = class Reload extends Command {
 						});
 					}
 				}
-			}	
+			}
 		}
 		if (reloaded.length && !errored.length) {
 			return msg.channel.send({
