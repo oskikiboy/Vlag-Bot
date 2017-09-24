@@ -43,4 +43,22 @@ module.exports = {
 		usage: `[text]`,
 		description: `Make some sick ass Ａ　Ｅ　Ｓ　Ｔ　Ｈ　Ｅ　Ｔ　Ｉ　Ｃ　Ｓ text.`,
 	},
+	tom: {
+		aliases: ["dnomaid", "badfish"],
+		maintainer: false,
+		usage: ``,
+		description: `Tells dnomaid he's a bad fish.. \\🐟`,
+	},
+	stroke: {
+		maintainer: false,
+		usage: `<...user>`,
+		description: `Stroke someone. Why not?!`,
+		aliases: ["strake", "strokes"],
+	},
+	gay: {
+		aliases: ["gey", "guy"],
+		maintainer: false,
+		usage: `[<user>]`,
+		description: `Is someone gay? (It doesn't give a rating)`,
+	},
 };
