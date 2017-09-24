@@ -17,7 +17,7 @@ module.exports = class VBotClient extends Client {
 	reloadConfigs() {
 		global.config = reload("./Configs/config.js");
 		global.commands = reload("./Configs/commands.js");
-		this.reloadAllCommands();
+		this.reloadAllCommands(true);
 	}
 
 	reloadCommand(command) {
@@ -29,9 +29,10 @@ module.exports = class VBotClient extends Client {
 		}
 	}
 
-	reloadAllCommands() {
+	reloadAllCommands(force = false) {
 		let commandKeys = Object.keys(commandModule);
 		if (!commandKeys.length) commandKeys = Object.keys(commands);
+		if (force) commandKeys = Object.keys(commands);
 		for (const command of commandKeys) {
 			if (command.startsWith("_") || command === "Command") continue;
 			this.reloadCommand(command).catch(err => {

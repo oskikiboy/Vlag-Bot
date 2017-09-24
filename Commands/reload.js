@@ -33,7 +33,7 @@ module.exports = class Reload extends Command {
 	}
 
 	async run({ msg, suffix }) {
-		if (suffix === "all") {
+		if (suffix.trim().toLowerCase() === "all") {
 			this.bot.reloadConfigs();
 			return msg.channel.send({
 				embed: {
