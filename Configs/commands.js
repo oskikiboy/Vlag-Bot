@@ -36,7 +36,7 @@ module.exports = {
 		aliases: ["almighty-b1nzy-pinger"],
 		usage: `[hail]`,
 		description: `TTtie is not the god`,
-  	},
+	},
 	vlag: {
 		maintainer: false,
 		aliases: ["vlad"],
