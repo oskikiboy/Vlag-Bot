@@ -1,5 +1,6 @@
 const Command = require("./Command.js");
 const commands = Object.keys(require("../Configs/commands.js"));
+let commandEntries = Object.entries(require("../Configs/commands.js"));
 
 module.exports = class Reload extends Command {
 	requirements({ msg, suffix }) {
@@ -7,7 +8,14 @@ module.exports = class Reload extends Command {
 		if (suffix.trim().toLowerCase() === "all") return true;
 		let split = suffix.toLowerCase().trim().split(" ");
 		let match = [];
-		for (const cmd of split) if (commands.includes(cmd)) match.push(cmd);
+		for (const cmd of split) {
+			if (commands.includes(cmd)) match.push(cmd);
+			for (const [key, value] of commandEntries) {
+				if (value.aliases && value.aliases.length > 0) {
+					if (value.aliases.includes(cmd)) match.push(key);
+				}
+			}
+		}
 		if (match.length > 0) return true;
 		return false;
 	}
@@ -35,19 +43,34 @@ module.exports = class Reload extends Command {
 				},
 			});
 		}
-		let args = suffix.split(" ");
+		let args = suffix.toLowerCase().trim().split(" ");
 		let reloaded = [], errored = [];
 		for (let i = 0; i < args.length; i++) {
 			if (args[i] === "all") continue;
-			if (!commands.includes(args[i])) continue;
-			await this.bot.reloadCommand(args[i]).then(() => {
-				reloaded.push(args[i]);
-			}).catch(err => {
-				errored.push({
-					error: err.message,
-					cmd: args[i],
+			if (commands.includes(args[i])) {
+				await this.bot.reloadCommand(args[i]).then(() => {
+					reloaded.push(args[i]);
+				}).catch(err => {
+					errored.push({
+						error: err.message,
+						cmd: args[i],
+					});
 				});
-			});
+			}
+			for (const [key, value] of commandEntries) {
+				if (value.aliases && value.aliases.length > 0) {
+					if (value.aliases.includes(args[i])) {
+						await this.bot.reloadCommand(key).then(() => {
+							reloaded.push(key);
+						}).catch(err => {
+							errored.push({
+								error: err.message,
+								cmd: key,
+							});
+						});
+					}
+				}
+			}	
 		}
 		if (reloaded.length && !errored.length) {
 			return msg.channel.send({

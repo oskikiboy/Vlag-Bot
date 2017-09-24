@@ -36,5 +36,17 @@ module.exports = {
 		aliases: ["almighty-b1nzy-pinger"],
 		usage: `[hail]`,
 		description: `TTtie is not the god`,
+  },
+	vlag: {
+		maintainer: false,
+		aliases: ["vlad"],
+		usage: ``,
+		description: `All hail Vlag!`,
+	},
+	vaporwave: {
+		aliases: ["vapor", "wave"],
+		maintainer: false,
+		usage: `[text]`,
+		description: `Make some sick ass Ａ　Ｅ　Ｓ　Ｔ　Ｈ　Ｅ　Ｔ　Ｉ　Ｃ　Ｓ text.`,
 	},
 };
