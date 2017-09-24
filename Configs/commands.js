@@ -31,6 +31,12 @@ module.exports = {
 		usage: `"all" or <...command>`,
 		description: `Reloads a command or all the configs and the commands`,
 	},
+	tttie: {
+		maintainer: false,
+		aliases: ["almighty-b1nzy-pinger"],
+		usage: `[hail]`,
+		description: `TTtie is not the god`,
+  	},
 	vlag: {
 		maintainer: false,
 		aliases: ["vlad"],
