@@ -58,7 +58,7 @@ bot.on("message", async msg => {
 		let cmdinfo = bot.getCommandInfo(command);
 		if (cmdinfo.maintainer && !bot.isMaintainer(msg.author)) {
 			bot.logCommand({ command, ran: false, reason: `the user isn't a maintainer!`, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
-			return (new cmd(bot, cmdinfo)).notMaintainer({ msg, suffix });
+			return (new cmd(bot, cmdinfo)).notMaintainer({ msg: msg, suffix: suffix });
 		} else if (cmdinfo.maintainer && bot.isMaintainer(msg.author)) {
 			bot.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
 			return (new cmd(bot, cmdinfo))._run({ msg: msg, suffix: suffix });
