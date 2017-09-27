@@ -13,7 +13,7 @@ module.exports = class Eval extends Command {
 			let result = await eval(asyncify(suffix));
 			if (typeof result !== "string") result = require("util").inspect(result, false, 2);
 			let array = [
-				this.bot.token.escapeRegex(),
+				this.client.token.escapeRegex(),
 				config.token.escapeRegex(),
 			];
 			let regex = new RegExp(array.join("|"), "g");

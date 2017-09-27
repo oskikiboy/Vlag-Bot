@@ -7,7 +7,7 @@ module.exports = class _ExampleCommand extends Command {
 	/**
 	 * This is optional, but if you want to define a variable per command,
 	 * you can use this. Useful for things like role IDs
-	 * To access the bot variable, use `this.bot`
+	 * To access the bot variable, use `this.client`
 	 */
 	constructor(...args) {
 		super(...args);

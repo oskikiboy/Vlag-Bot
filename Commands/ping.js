@@ -14,7 +14,7 @@ module.exports = class Ping extends Command {
 				color: 0x00FF00,
 				description: `Pong! It took ${Math.floor((now - msg.createdTimestamp) / 2.5)}ms to ping.`,
 				footer: {
-					text: `Bot Latency: ${Math.floor(this.bot.ping)}ms`,
+					text: `Bot Latency: ${Math.floor(this.client.ping)}ms`,
 				},
 			},
 		});

@@ -10,8 +10,10 @@ const { Client, Collection } = require("discord.js");
 module.exports = class VBotClient extends Client {
 	constructor(options) {
 		super(options);
-		this.bans = new Collection();
-		this.usages = new Collection();
+		/**
+		 * Usage collection, mapped by command name
+		 */
+		this.commandUsage = new Collection();
 	}
 
 	reloadConfigs() {
@@ -61,6 +63,17 @@ module.exports = class VBotClient extends Client {
 				if (value.aliases && value.aliases.length > 0) {
 					if (value.aliases.includes(command.toLowerCase().trim())) return commands[key];
 				}
+			}
+		}
+	}
+
+	getCommandName(command) {
+		command = command.toLowerCase().trim();
+		for (const [k, v] of Object.entries(commands)) {
+			if (k === command) {
+				return k;
+			}	else if (v.aliases && v.aliases.length > 0) {
+				if (v.aliases.includes(command)) return k;
 			}
 		}
 	}
@@ -161,9 +174,9 @@ ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 	}
 };
 
-function changePlayingStatus(bot) {
+function changePlayingStatus(client) {
 	let randomQuote = config.playingStatuses[Math.floor(Math.random() * config.playingStatuses.length)];
-	bot.logEvent({ event: "PRESENCE", shortMessage: `Changed my playing status to "${randomQuote}"` });
-	bot.user.setActivity(randomQuote);
-	return bot.setTimeout(changePlayingStatus, config.changePlayingStatusEvery, bot);
+	client.logEvent({ event: "PRESENCE", shortMessage: `Changed my playing status to "${randomQuote}"` });
+	client.user.setActivity(randomQuote);
+	return client.setTimeout(changePlayingStatus, config.changePlayingStatusEvery, client);
 }

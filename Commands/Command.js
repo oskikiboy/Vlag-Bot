@@ -1,6 +1,6 @@
 module.exports = class Command {
-	constructor(bot, commandData) {
-		this.bot = bot;
+	constructor(client, commandData) {
+		this.client = client;
 		this.commandData = commandData;
 	}
 	/**

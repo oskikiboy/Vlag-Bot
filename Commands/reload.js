@@ -34,7 +34,7 @@ module.exports = class Reload extends Command {
 
 	async run({ msg, suffix }) {
 		if (suffix.trim().toLowerCase() === "all") {
-			this.bot.reloadConfigs();
+			this.client.reloadConfigs();
 			return msg.channel.send({
 				embed: {
 					color: 0x00FF00,
@@ -48,7 +48,7 @@ module.exports = class Reload extends Command {
 		for (let i = 0; i < args.length; i++) {
 			if (args[i] === "all") continue;
 			if (commands.includes(args[i])) {
-				await this.bot.reloadCommand(args[i]).then(() => {
+				await this.client.reloadCommand(args[i]).then(() => {
 					reloaded.push(args[i]);
 				}).catch(err => {
 					errored.push({
@@ -60,7 +60,7 @@ module.exports = class Reload extends Command {
 			for (const [key, value] of commandEntries) {
 				if (value.aliases && value.aliases.length > 0) {
 					if (value.aliases.includes(args[i])) {
-						await this.bot.reloadCommand(key).then(() => {
+						await this.client.reloadCommand(key).then(() => {
 							reloaded.push(key);
 						}).catch(err => {
 							errored.push({

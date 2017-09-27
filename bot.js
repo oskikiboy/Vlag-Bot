@@ -1,6 +1,6 @@
 const VBotClient = require("./Client.js");
 
-const bot = new VBotClient({
+const client = new VBotClient({
 	fetchAllMembers: true,
 	disabledEvents: [
 		"TYPING_START",
@@ -24,14 +24,18 @@ Object.assign(String.prototype, {
 	},
 });
 
-bot.once("ready", () => {
-	bot.logEvent({ event: "READY", shortMessage: `Logged in as ${bot.user.tag}!` });
-	bot.isReady = true;
-	bot.reloadAllCommands();
-	bot.startPlayingStatus();
+client.once("ready", () => {
+	client.logEvent({ event: "READY", shortMessage: `Logged in as ${client.user.tag}!` });
+	client.isReady = true;
+	client.reloadAllCommands();
+	client.startPlayingStatus();
+	for (const cmd of Object.keys(require("./Configs/commands.js"))) {
+		if (cmd.startsWith("_") || cmd === "Command") continue;
+		client.commandUsage.set(cmd, 0);
+	}
 });
 
-bot.on("message", async msg => {
+client.on("message", async msg => {
 	if (msg.author.bot) return;
 	if (msg.content.toLowerCase().trim() === "me me big boy") {
 		return msg.channel.send({
@@ -47,26 +51,29 @@ bot.on("message", async msg => {
 			try {
 				await msg.delete();
 			} catch (err) {
-				bot.logEvent({ event: "DEL_CMD_MSG", shortMessage: `Couldn't delete the command message!`, args: [err.message] });
+				client.logEvent({ event: "DEL_CMD_MSG", shortMessage: `Couldn't delete the command message!`, args: [err.message] });
 			}
 		}
 	}
-	const msgObject = await bot.checkCommandTag(msg.content);
-	const { command, suffix } = msgObject;
+	const msgObject = await client.checkCommandTag(msg.content);
+	let { command, suffix } = msgObject;
 	if (msgObject && command !== null) {
-		let cmd = bot.getCommand(command);
-		let cmdinfo = bot.getCommandInfo(command);
-		if (cmdinfo.maintainer && !bot.isMaintainer(msg.author)) {
-			bot.logCommand({ command, ran: false, reason: `the user isn't a maintainer!`, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
-			return (new cmd(bot, cmdinfo)).notMaintainer({ msg: msg, suffix: suffix });
-		} else if (cmdinfo.maintainer && bot.isMaintainer(msg.author)) {
-			bot.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
-			return (new cmd(bot, cmdinfo))._run({ msg: msg, suffix: suffix });
+		let cmd = client.getCommand(command);
+		let cmdinfo = client.getCommandInfo(command);
+		command = client.getCommandName(command);
+		if (cmdinfo.maintainer && !client.isMaintainer(msg.author)) {
+			client.logCommand({ command, ran: false, reason: `the user isn't a maintainer!`, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			return (new cmd(client, cmdinfo)).notMaintainer({ msg: msg, suffix: suffix });
+		} else if (cmdinfo.maintainer && client.isMaintainer(msg.author)) {
+			client.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			client.commandUsage.set(command, client.commandUsage.get(command) + 1);
+			return (new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
 		} else {
-			bot.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
-			return (new cmd(bot, cmdinfo))._run({ msg: msg, suffix: suffix });
+			client.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
+			client.commandUsage.set(command, client.commandUsage.get(command) + 1);
+			return (new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
 		}
 	}
 });
 
-bot.login(config.token);
+client.login(config.token);
