@@ -14,6 +14,25 @@ module.exports = class VBotClient extends Client {
 		 * Usage collection, mapped by command name
 		 */
 		this.commandUsage = new Collection();
+
+		/**
+		 * Snapshot handler
+		 * @type {?SnapshotHandler|null}
+		 */
+		this.SnapshotHandler = (function findSnapshotter() {
+			try {
+				var snapshotter = require("./Handlers/SnapshotHandler.js");
+			} catch (err) {
+				snapshotter = null;
+			}
+			return snapshotter;
+		}());
+
+		/**
+		 * Suspicious activity collection >.>
+		 * @type {Collection<Snowflake, Object>}
+		 */
+		this.activity = new Collection();
 	}
 
 	reloadConfigs() {
@@ -121,9 +140,10 @@ module.exports = class VBotClient extends Client {
 	logCommand({ command, ran = true, reason = null, user = null, userID = null, guild = null, guildID = null, channel = null, channelID = null, suffix = null }) {
 		let string = `
 [${command.toUpperCase()}]
-» Ran  : ${ran}
-» User : ${user}
-» Where: ${guild && channel && channelID ? `${guild}, #${channel} (${channelID})` : `DMs (${channelID})`}
+» Ran  	: ${ran}
+» User 	: ${user}
+» Where	: ${guild && channel && channelID ? `${guild}, #${channel} (${channelID})` : `DMs (${channelID})`}
+» Suffix: ${suffix ? `"${suffix}"` : "No suffix provided"}
 ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 		console.log(string);
 		if (guild && config.logging && config.logging.guild && config.logging.channel) {

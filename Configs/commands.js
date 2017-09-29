@@ -67,4 +67,16 @@ module.exports = {
 		usage: `[<user>]`,
 		description: `Is someone gay? (It doesn't give a rating)`,
 	},
+	bantergaming: {
+		aliases: ["banter", "eggs", "egg"],
+		maintainer: false,
+		usage: ``,
+		description: `Banter lieks eggz`,
+	},
+	bless: {
+		aliases: ["blessup", "blesses", "bloss"],
+		maintainer: false,
+		usage: `[<...user>]`,
+		description: `Vlag the God blesses you (or others too!)`,
+	},
 };
