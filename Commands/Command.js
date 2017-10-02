@@ -19,7 +19,7 @@ module.exports = class Command {
 	}
 
 	async _run(params = {}) {
-		if (this.requirements(params)) await this.run(params);
+		if (this.requirements(params)) this.run(params);
 		else this.requirementsFail(params);
 	}
 	// eslint-disable-next-line no-empty-function

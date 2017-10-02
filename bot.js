@@ -37,7 +37,6 @@ client.once("ready", () => {
 
 client.on("message", async msg => {
 	if (msg.author.bot) return;
-	if (msg.guild) await msg.guild.members.fetch();
 	if (msg.content.toLowerCase().trim() === "me me big boy") {
 		return msg.channel.send({
 			embed: {
@@ -46,40 +45,42 @@ client.on("message", async msg => {
 			},
 		});
 	}
-	const msgObject = await client.checkCommandTag(msg.content);
+	if (!validateMsg(msg)) return;
+	const msgObject = client.checkCommandTag(msg.content);
 	let { command, suffix } = msgObject;
 	if (msgObject && command !== null) {
 		let cmd = client.getCommand(command);
 		let cmdinfo = client.getCommandInfo(command);
 		command = client.getCommandName(command);
-		if (cmdinfo && cmdinfo.maintainer && !client.isMaintainer(msg.author)) {
+		if (cmdinfo) deleteCommandMessage(msg);
+		if (cmdinfo && cmdinfo.maintainer && !client.isMaintainer(msg.author.id)) {
 			client.logCommand({ command, ran: false, reason: `the user isn't a maintainer!`, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
-			deleteCommandMessage(msg);
-			return (new cmd(client, cmdinfo)).notMaintainer({ msg: msg, suffix: suffix });
-		} else if (cmdinfo && cmdinfo.maintainer && client.isMaintainer(msg.author)) {
+			(new cmd(client, cmdinfo)).notMaintainer({ msg: msg, suffix: suffix });
+		} else if (cmdinfo && cmdinfo.maintainer && client.isMaintainer(msg.author.id)) {
 			client.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
 			client.commandUsage.set(command, client.commandUsage.get(command) + 1);
-			deleteCommandMessage(msg);
-			return (new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
+			(new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
 		} else if (cmdinfo) {
 			client.logCommand({ command, user: msg.author.tag, userID: msg.author.id, guild: msg.guild ? msg.guild.name : null, guildID: msg.guild ? msg.guild.id : null, channel: msg.guild ? msg.channel.name : null, channelID: msg.channel.id, suffix: suffix });
 			client.commandUsage.set(command, client.commandUsage.get(command) + 1);
-			deleteCommandMessage(msg);
-			return (new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
+			(new cmd(client, cmdinfo))._run({ msg: msg, suffix: suffix });
 		}
 	}
 });
 
 client.login(config.token);
 
-async function deleteCommandMessage(msg) {
+function deleteCommandMessage(msg) {
 	if (msg.guild) {
 		if (config.deleteMessage) {
-			try {
-				await msg.delete();
-			} catch (err) {
-				client.logEvent({ event: "DEL_CMD_MSG", shortMessage: `Couldn't delete the command message!`, args: [err.message] });
-			}
+			msg.delete().catch(err => client.logEvent({ event: "DEL_CMD_MSG", shortMessage: `Couldn't delete the command message!`, args: [err.message] }));
 		}
 	}
+}
+
+function validateMsg(msg) {
+	let config = require("./Configs/config");
+	if (config.prefix && msg.content.startsWith(config.prefix)) return true;
+	if (config.allowMentionAsPrefix && (msg.content.startsWith(msg.client.toString()) || msg.content.startsWith(`<@!${msg.client.user.id}>`))) return true;
+	return false;
 }

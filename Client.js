@@ -126,11 +126,11 @@ module.exports = class VBotClient extends Client {
 				suffix: suffix,
 			};
 		}
-		return Promise.resolve(object);
+		return object;
 	}
 
 	isMaintainer(user) {
-		return config.maintainers.includes(user.id);
+		return config.maintainers.indexOf(user.id || user) > -1;
 	}
 
 	logEvent({ event, args = [], joinParam = " ", shortMessage = "" }) {
@@ -168,20 +168,20 @@ ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 					inline: false,
 				},
 			);
-			this.guilds.get(config.logging.guild).channels.get(config.logging.channel).send({
-				embed: {
-					color: 0xADD8E6,
-					author: {
-						name: `${guild ? `${guild} (${guildID})` : `DMs (${channelID}`}`,
-						iconURL: guild && guildID ? this.guilds.get(guildID).iconURL({ size: 128 }) : "",
-					},
-					thumbnail: {
-						url: userID ? this.users.get(userID).displayAvatarURL({ size: 128 }) : "",
-					},
-					title: `Command ${command} was triggered`,
-					fields,
-				},
-			});
+			// This.guilds.get(config.logging.guild).channels.get(config.logging.channel).send({
+			// 	embed: {
+			// 		color: 0xADD8E6,
+			// 		author: {
+			// 			name: `${guild ? `${guild} (${guildID})` : `DMs (${channelID}`}`,
+			// 			iconURL: guild && guildID ? this.guilds.get(guildID).iconURL({ size: 128 }) : "",
+			// 		},
+			// 		thumbnail: {
+			// 			url: userID ? this.users.get(userID).displayAvatarURL({ size: 128 }) : "",
+			// 		},
+			// 		title: `Command ${command} was triggered`,
+			// 		fields,
+			// 	},
+			// });
 		}
 	}
 
