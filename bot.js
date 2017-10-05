@@ -79,7 +79,6 @@ function deleteCommandMessage(msg) {
 }
 
 function validateMsg(msg) {
-	let config = require("./Configs/config");
 	if (config.prefix && msg.content.startsWith(config.prefix)) return true;
 	if (config.allowMentionAsPrefix && (msg.content.startsWith(msg.client.toString()) || msg.content.startsWith(`<@!${msg.client.user.id}>`))) return true;
 	return false;

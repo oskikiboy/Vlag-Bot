@@ -168,20 +168,20 @@ ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 					inline: false,
 				},
 			);
-			// This.guilds.get(config.logging.guild).channels.get(config.logging.channel).send({
-			// 	embed: {
-			// 		color: 0xADD8E6,
-			// 		author: {
-			// 			name: `${guild ? `${guild} (${guildID})` : `DMs (${channelID}`}`,
-			// 			iconURL: guild && guildID ? this.guilds.get(guildID).iconURL({ size: 128 }) : "",
-			// 		},
-			// 		thumbnail: {
-			// 			url: userID ? this.users.get(userID).displayAvatarURL({ size: 128 }) : "",
-			// 		},
-			// 		title: `Command ${command} was triggered`,
-			// 		fields,
-			// 	},
-			// });
+			this.guilds.get(config.logging.guild).channels.get(config.logging.channel).send({
+				embed: {
+					color: 0xADD8E6,
+					author: {
+						name: `${guild ? `${guild} (${guildID})` : `DMs (${channelID}`}`,
+						iconURL: guild && guildID ? this.guilds.get(guildID).iconURL({ size: 128 }) : "",
+					},
+					thumbnail: {
+						url: userID ? this.users.get(userID).displayAvatarURL({ size: 128 }) : "",
+					},
+					title: `Command ${command} was triggered`,
+					fields,
+				},
+			});
 		}
 	}
 

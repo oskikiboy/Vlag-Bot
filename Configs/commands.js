@@ -31,6 +31,7 @@ module.exports = {
 		maintainer: true,
 		usage: `"all" or <...command>`,
 		description: `Reloads a command or all the configs and the commands`,
+		aliases: ["r"],
 	},
 	tttie: {
 		maintainer: false,
