@@ -18,7 +18,7 @@
     "erlpack": "github:discordapp/erlpack",
     "fastboot": "gist:658baf5e5581c6deeab256d6bdd9e7bb",
     "require-reload": "^0.2.2",
-    "snekfetch": "^3.4.2",
+    "snekfetch": "^3.4.5",
     "string": "^3.3.3",
     "uws": "^8.14.1"
   },
