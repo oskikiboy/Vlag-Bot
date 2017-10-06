@@ -1,3 +1,5 @@
+require("fastboot");
+
 const VBotClient = require("./Client.js");
 
 const client = new VBotClient({
@@ -68,7 +70,11 @@ client.on("message", async msg => {
 	}
 });
 
-client.login(config.token);
+client.login(config.token).then(() => {
+	client.logEvent({ event: "LOGIN", shortMessage: "Logging in!" });
+}).catch(err => {
+	client.logEvent({ event: "LOGIN", shortMessage: "Failed to log in!", args: [err.message] });
+});
 
 function deleteCommandMessage(msg) {
 	if (msg.guild) {

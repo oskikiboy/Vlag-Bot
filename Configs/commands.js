@@ -118,4 +118,10 @@ module.exports = {
 		description: `Shows you the usage amount of the bot or the amount of commands present in the bot!`,
 		subcommands: ["commands", "cmds", "usage", "usages"],
 	},
+	negative: {
+		aliases: ["negativecommencer"],
+		maintainer: false,
+		usage: ``,
+		description: `Negative is getting expose 💯`,
+	},
 };

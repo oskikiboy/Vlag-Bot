@@ -9,7 +9,7 @@ module.exports = class Eval extends Command {
 	async run({ msg, suffix }) {
 		try {
 			if (suffix.startsWith("```js") && suffix.endsWith("```")) suffix = suffix.substring(5, suffix.length - 3);
-			const asyncify = code => `(async () => {\nreturn ${code}\n})()`;
+			const asyncify = code => `(async () => {\nreturn ${code.trim()}\n})()`;
 			let result = await eval(asyncify(suffix));
 			if (typeof result !== "string") result = require("util").inspect(result, false, 2);
 			let array = [
