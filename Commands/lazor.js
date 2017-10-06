@@ -13,7 +13,7 @@ module.exports = class Lazor extends Command {
 					text: `Except it isn't your copyright. -- Vlad`,
 				},
 			},
-		});		
+		});
 	}
 };
 
