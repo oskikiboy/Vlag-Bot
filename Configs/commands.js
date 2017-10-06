@@ -124,4 +124,52 @@ module.exports = {
 		usage: ``,
 		description: `Negative is getting expose 💯`,
 	},
+	jaffa: {
+		aliases: ["jaffameme"],
+		maintainer: false,
+		usage: ``,
+		description: `Something something, Vlad isn't creative, and if you bully him something something.`,
+	},
+	pray: {
+		aliases: ["prayers", "praying", "pray_to_vlag"],
+		maintainer: false,
+		usage: ``,
+		description: `Pray to God Vlag!`,
+	},
+	josh: {
+		aliases: ["st1ing", "sting"],
+		maintainer: false,
+		usage: ``,
+		description: `Hail the Smol Lund God or something idfk..`,
+	},
+	haden: {
+		aliases: ["handu", "hoodiny"],
+		maintainer: false,
+		usage: ``,
+		description: `Admires Haden's underwear... I mean shows you how good his underwear is.. Yeah..`,
+	},
+	sorarin: {
+		aliases: ["badpainter", "fingering", "soraron", "ron", "rin"],
+		maintainer: false,
+		usage: ``,
+		description: `Sorarin likes pussy, what more?!`,
+	},
+	lazor: {
+		aliases: ["lazor"],
+		maintainer: false,
+		usage: ``,
+		description: `Something something, bullshit claims, something something`,
+	},
+	minecraft: {
+		aliases: ["mc", "mine", "craft"],
+		maintainer: false,
+		usage: ``,
+		description: `It's Minecraft day bro.`,
+	},
+	quake: {
+		aliases: ["annsquake", "arseshake", "quake_propaganda"],
+		maintainer: false,
+		usage: ``,
+		description: `Annsquake is actually safe!`,
+	},
 };

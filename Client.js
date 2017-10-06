@@ -5,7 +5,7 @@ const S = require("string");
 
 let commandModule = {};
 
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, Util } = require("discord.js");
 
 module.exports = class VBotClient extends Client {
 	constructor(options) {
@@ -33,6 +33,12 @@ module.exports = class VBotClient extends Client {
 		 * @type {Collection<Snowflake, Object>}
 		 */
 		this.activity = new Collection();
+
+		/**
+		 * Starboard collection
+		 * @type {Collection<Snowflake, GuildStarboard>}
+		 */
+		this.starboards = new Collection();
 	}
 
 	reloadConfigs() {
@@ -164,7 +170,7 @@ ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 			fields.push(
 				{
 					name: `${suffix ? `The following suffix was provided:` : "There was no suffix provided."}`,
-					value: `${suffix ? `\`\`\`css\n${suffix}\`\`\`` : "​"}`,
+					value: `${suffix ? `\`\`\`css\n${suffix.replace(/```/g, "")}\`\`\`` : "​"}`,
 					inline: false,
 				},
 			);
