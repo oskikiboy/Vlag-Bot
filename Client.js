@@ -16,19 +16,6 @@ module.exports = class VBotClient extends Client {
 		this.commandUsage = new Collection();
 
 		/**
-		 * Snapshot handler
-		 * @type {?SnapshotHandler|null}
-		 */
-		this.SnapshotHandler = (function findSnapshotter() {
-			try {
-				var snapshotter = require("./Handlers/SnapshotHandler.js");
-			} catch (err) {
-				snapshotter = null;
-			}
-			return snapshotter;
-		}());
-
-		/**
 		 * Suspicious activity collection >.>
 		 * @type {Collection<Snowflake, Object>}
 		 */
@@ -39,6 +26,17 @@ module.exports = class VBotClient extends Client {
 		 * @type {Collection<Snowflake, GuildStarboard>}
 		 */
 		this.starboards = new Collection();
+	}
+
+	/**
+	 * See if the snapshot handler is available
+	 */
+	get SnapshotHandler() {
+		try {
+			return require("./Handlers/SnapshotHandler");
+		} catch (err) {
+			return null;
+		}
 	}
 
 	reloadConfigs() {
@@ -184,7 +182,7 @@ ${!ran && reason ? `» Reason: ${S(reason).capitalize().s}\n` : ""}`;
 					thumbnail: {
 						url: userID ? this.users.get(userID).displayAvatarURL({ size: 128 }) : "",
 					},
-					title: `Command ${command} was triggered`,
+					title: `Command "${command}" was triggered`,
 					fields,
 				},
 			});
