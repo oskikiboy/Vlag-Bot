@@ -206,4 +206,18 @@ module.exports = {
 		description: `Spanks users. Just the way you like it!`,
 		category: `Fun 🎪`,
 	},
+	hail: {
+		aliases: ["heil"],
+		maintainer: false,
+		usage: `[<user>]`,
+		description: `Hail Vlag!`,
+		category: `Fun 🎪`,
+	},
+	help: {
+		aliases: ["h"],
+		maintainer: false,
+		usage: `[<command>]`,
+		description: `Gives help for the bot!`,
+		category: `V-Bot 🤖`,
+	},
 };

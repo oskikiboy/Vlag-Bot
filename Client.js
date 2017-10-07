@@ -88,6 +88,7 @@ module.exports = class VBotClient extends Client {
 				}
 			}
 		}
+		return null;
 	}
 
 	getCommandName(command) {
@@ -99,6 +100,7 @@ module.exports = class VBotClient extends Client {
 				if (v.aliases.includes(command)) return k;
 			}
 		}
+		return null;
 	}
 
 	checkCommandTag(message) {
