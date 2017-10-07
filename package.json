@@ -1,6 +1,6 @@
 {
   "name": "vlag-approved-aurorabot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A custom bot for Aurora Community, that's very modular and easy to use",
   "main": "bot.js",
   "repository": {
