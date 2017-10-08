@@ -220,4 +220,11 @@ module.exports = {
 		description: `Gives help for the bot!`,
 		category: `V-Bot 🤖`,
 	},
+	fuck: {
+		aliases: ["fack", "fooking", "fuckme"],
+		maintainer: false,
+		usage: `<...user>`,
+		description: `Fuck someone!`,
+		category: `Fun 🎪`,
+	},
 };
