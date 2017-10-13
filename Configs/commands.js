@@ -227,4 +227,11 @@ module.exports = {
 		description: `Fuck someone!`,
 		category: `Fun 🎪`,
 	},
+	kill: {
+		aliases: ["kidkiller", "killer", "keemstar", "kil"],
+		maintainer: false,
+		usage: `<...user>`,
+		description: `Kill someone.. (quote-on-quote kill)`,
+		category: `Fun 🎪`,
+	},
 };

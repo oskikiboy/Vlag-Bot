@@ -31,7 +31,7 @@ client.once("ready", () => {
 	client.isReady = true;
 	client.reloadAllCommands();
 	client.startPlayingStatus();
-	for (const cmd of Object.keys(require("./Configs/commands.js"))) {
+	for (const cmd of Object.keys(commands)) {
 		if (cmd.startsWith("_") || cmd === "Command") continue;
 		client.commandUsage.set(cmd, 0);
 	}
